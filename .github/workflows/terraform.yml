@@ -17,6 +17,8 @@ jobs:
   terraform-validate:
     name: Validate Terraform
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     strategy:
       matrix:
         environment: [dev, stage, prod]
@@ -45,6 +47,8 @@ jobs:
   terraform-plan:
     name: Plan Terraform
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     needs: terraform-validate
     if: github.event_name == 'pull_request'
     strategy:
